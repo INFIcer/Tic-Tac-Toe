@@ -197,12 +197,14 @@ public class Manager : MonoBehaviour
 	{
 		declared = true;
 		ShowDeclareView(player);
+#if false
 		if (player.HasValue)
 		{
 			Debug.Log($"{player} win");
 		}
 		else
 			Debug.Log($"draw");
+#endif
 	}
 	#region Turn
 	IEnumerator HumanTurn()
@@ -251,12 +253,12 @@ public class Manager : MonoBehaviour
 		{
 			if (currentPlayer == humanPlayer)
 			{
-				Debug.Log("PlayerTurn");
+				//Debug.Log("PlayerTurn");
 				yield return HumanTurn();
 			}
 			else
 			{
-				Debug.Log("AITurn");
+				//Debug.Log("AITurn");
 				yield return AITurn();
 			}
 			if (declared)
@@ -267,7 +269,7 @@ public class Manager : MonoBehaviour
 			else
 				currentPlayer = !currentPlayer;
 		}
-		Debug.Log("game over");
+		//Debug.Log("game over");
 	}
 	#endregion
 
@@ -324,7 +326,6 @@ public class Manager : MonoBehaviour
 			for (int j = 0; j < BOARD_SIZE; j++)
 				board[i, j] = new Cell();
 
-		//cells = new Cell[BOARD_SIZE * BOARD_SIZE];
 		for (int i = 0; i < BOARD_SIZE; i++)
 			for (int j = 0; j < BOARD_SIZE; j++)
 			{
@@ -333,7 +334,6 @@ public class Manager : MonoBehaviour
 				uCell.x = i;
 				uCell.y = j;
 				uCell.HumanPlace = TriggerHumanPlace;
-				//cells[i + j * BOARD_SIZE] = uCell;
 
 				uCell.GetComponent<RectTransform>().anchoredPosition = new Vector2((i - 1) * 100, (j - 1) * 100);
 			}
