@@ -39,12 +39,11 @@ public class Cell
 public class Manager : MonoBehaviour
 {
 	#region UI
-	public RectTransform boardUIParent;
-	public CellView prefab;
-	//Cell[] cells;
-	public DeclareView declareView;
-	public Toggle toggle;
-	public Image indicator;
+	[SerializeField] RectTransform boardUIParent;
+	[SerializeField] CellView prefab;
+	[SerializeField] DeclareView declareView;
+	[SerializeField] Toggle toggle;
+	[SerializeField] IndicatorView indicatorView;
 	void ShowDeclareView(bool? winner)
 	{
 		declareView.Bind(winner);
@@ -341,8 +340,7 @@ public class Manager : MonoBehaviour
 
 		OnCurrentPlayerChanged += (b) =>
 		{
-			indicator.sprite = SpriteResources.GetSprite(b);
-			indicator.transform.parent.gameObject.SetActive(b.HasValue);
+			indicatorView.Bind(b);
 		};
 
 		StartGame();

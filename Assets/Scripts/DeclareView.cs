@@ -1,12 +1,16 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class DeclareView : MonoBehaviour
+public class View : MonoBehaviour
 {
-	public Image image;
-	public TextMeshProUGUI text;
-	public CanvasGroup canvasGroup;
+	CanvasGroup canvasGroup;
+	private void Start()
+	{
+		if (!TryGetComponent(out canvasGroup))
+		{
+			canvasGroup = gameObject.AddComponent<CanvasGroup>();
+		}
+	}
 	public void Show()
 	{
 		canvasGroup.alpha = 1.0f;
@@ -15,6 +19,12 @@ public class DeclareView : MonoBehaviour
 	{
 		canvasGroup.alpha = 0;
 	}
+}
+public class DeclareView : View
+{
+	[SerializeField] Image image;
+	[SerializeField] TextMeshProUGUI text;
+
 	public void Bind(bool? winner)
 	{
 		if (winner.HasValue)

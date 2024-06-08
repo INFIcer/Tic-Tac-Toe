@@ -3,9 +3,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
 public class CellView : MonoBehaviour, IPointerClickHandler
 {
-	public Image image;
+	[SerializeField] Image image;
 
 	[NonSerialized] public Action<int, int> HumanPlace;
 	[NonSerialized] public int x, y;
